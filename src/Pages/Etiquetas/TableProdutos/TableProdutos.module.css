@@ -1,0 +1,22 @@
+.tableProdutos{
+    width: 100%;
+}
+
+.header{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 100px 1fr 100px;
+    justify-content: space-between;
+    padding: 10px 26px;
+    background-color: gray;
+    font-weight: bold;
+    color: white;
+    border-radius: 10px 10px 0px 0px;
+    font-size: 1.2rem;
+}
+
+.produtos{
+    border-radius: 0 0 10px 10px;
+    max-height: 400px;
+    overflow-y: scroll;
+}

@@ -1,0 +1,9 @@
+.produto{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 100px 1fr 100px;
+    background-color: white;
+    padding: 20px 26px;
+    border-bottom: 1px solid rgba(209, 209, 209, 0.527);
+}
+

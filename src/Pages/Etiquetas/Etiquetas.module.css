@@ -1,0 +1,85 @@
+.etiquetas {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  align-items: center;
+  gap: 1rem;
+}
+
+.etiquetas h1 {
+  font-size: 2rem;
+  color: white;
+  font-weight: 600;
+  text-align: center;
+}
+
+.inputFile {
+  display: flex;
+  gap: .5rem;
+  align-items: center;
+}
+
+.inputFile input{
+    color: white;
+    background-color: rgb(92, 92, 189);
+    padding: 12px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.inputFile input:hover{
+    background-color: rgb(65, 65, 158);
+    transition: .5s;
+    transform: scale(1.01);
+}
+
+.inputFile p{
+    background-color: #ffd700;
+    padding: 12px 10px;
+    color: white;
+    font-size: .9rem;
+    border-radius: 10px;
+    color: hsl(52, 100%, 12%);
+    font-weight: 600;
+}
+
+.filter{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.filter input{
+    flex: 2;
+    border-radius: 10px;
+    box-shadow: 0 0 5px 2px rgb(90, 90, 90);
+    outline: none;
+    padding: 10px 20px;
+    font-size: 1.3rem;
+}
+
+.adicionar,.contagem{
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.adicionar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(0, 100, 0);
+}
+
+.adicionar:hover{
+    background-color: rgb(0, 83, 0);
+    transition: .5s;
+    transform: scale(1.01);
+}
+
+.adicionar img{
+   width: 30px;
+}
