@@ -1,14 +1,22 @@
-import React from 'react'
-import style from './Produto.module.css'
+import React from "react";
+import style from "./Produto.module.css";
+import { planProdutoTypeNormalize } from "../../../../Functions/normalizeData";
+import currentConvert from "../../../../Functions/currentConvert";
+import trashIcon from '../../../../assets/icons/trashed.svg'
 
-const Produto = () => {
+const Produto = ({ produto,deleteItem }: { produto: planProdutoTypeNormalize }) => {
+
+
   return (
     <li className={style.produto}>
-      <span>10.0089</span>
-      <span>CAMARA 26 BUTIL KENDA 26.1/98 TAUNUS</span>
-      <span>19.17</span>
+      <span>{produto.codigo}</span>
+      <span>{produto.descricao}</span>
+      <span>{currentConvert(produto.preco)}</span>
+      <span onClick={()=>deleteItem(produto.codigo)}>
+        <img src={trashIcon} alt=""  />
+      </span>
     </li>
-  )
-}
+  );
+};
 
-export default Produto
+export default Produto;

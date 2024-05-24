@@ -1,9 +1,18 @@
 .produto{
     width: 100%;
     display: grid;
-    grid-template-columns: 100px 1fr 100px;
+    grid-template-columns: 100px 1fr 100px 20px;
     background-color: white;
     padding: 20px 26px;
+    align-items: center;
     border-bottom: 1px solid rgba(209, 209, 209, 0.527);
+    justify-content: center;
 }
 
+.produto span img{
+    width: 25px;
+}
+
+.produto span:last-child{
+cursor: pointer;
+}

@@ -1,14 +1,18 @@
-import React, { useContext } from 'react';
+import React, { useContext } from "react";
 import * as XLSX from "xlsx";
-import GlobalContext, { GlobalContextType } from '../Context/GlobalContext';
+import {
+  useGlobalContext,
+} from "../Context/GlobalContext";
+import { normalizeData, planProdutoType } from "./normalizeData";
 
 interface ExcelToJsonProps {
   file: File | null;
 }
 
 const ExcelToJson: React.FC<ExcelToJsonProps> = ({ file }) => {
-  const { setPlanilha } = useContext(GlobalContext);
+  const {planilha,setPlanilha} = useGlobalContext()
 
+  
   React.useEffect(() => {
     if (file) {
       const reader = new FileReader();
@@ -24,17 +28,21 @@ const ExcelToJson: React.FC<ExcelToJsonProps> = ({ file }) => {
           const sheet = workbook.Sheets[sheetName];
 
           // Converte a planilha para um objeto JSON
-          const jsonData = XLSX.utils.sheet_to_json(sheet);
+          const jsonData: planProdutoType[] = XLSX.utils.sheet_to_json(sheet);
           localStorage.setItem("planilha", JSON.stringify(jsonData));
-          setPlanilha(jsonData);
-          console.log(jsonData);
+
+          const produtosNormalizados = jsonData.map((produto) => {
+            if(produto) return normalizeData(produto)
+          });
+        
+         setPlanilha(produtosNormalizados)
           
         }
       };
 
       reader.readAsArrayBuffer(file);
     }
-  }, [file, setPlanilha]);
+  }, [file]);
 
   return null;
 };
