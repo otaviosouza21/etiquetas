@@ -1,24 +1,44 @@
-import React from "react";
+import React, { SetStateAction } from "react";
 import Produto from "./Produto/Produto";
 import style from "../TableProdutos/TableProdutos.module.css";
 import { useGlobalContext } from "../../../Context/GlobalContext";
 import { planProdutoTypeNormalize } from "../../../Functions/normalizeData";
 
-const TableProdutos = ({ lista }: { lista: planProdutoTypeNormalize[] }) => {
+interface tableProdutosType {
+  lista: planProdutoTypeNormalize[];
+  setListaInserida: React.Dispatch<
+    React.SetStateAction<planProdutoTypeNormalize[]>
+  >;
+}
 
+const TableProdutos = ({ lista, setListaInserida }: tableProdutosType) => {
+  function deleteItem(idx: number): void {
+    const novaLista = [...lista];
+    novaLista.splice(idx, 1);
+    setListaInserida(novaLista);
+    return;
+  }
 
 
   return (
     <div className={style.tableProdutos}>
-      <ul className={style.header}>
-        <li>Codigo</li>
-        <li>Descricao</li>
-        <li>Valor</li>
-        <li></li>
-      </ul>
       <ul className={style.produtos}>
-        {lista?.map((produto) => {
-          return <Produto /* deleteItem={deleteItem} */ produto={produto} key={produto.codigo} />;
+        <li className={style.header}>
+          <span></span>
+          <span>Codigo</span>
+          <span>Descricao</span>
+          <span>Valor</span>
+          <span></span>
+        </li>
+        {lista?.map((produto, idx) => {
+          return (
+            <Produto
+              deleteItem={deleteItem}
+              index={idx}
+              produto={produto}
+              key={produto.codigo}
+            />
+          );
         })}
       </ul>
     </div>

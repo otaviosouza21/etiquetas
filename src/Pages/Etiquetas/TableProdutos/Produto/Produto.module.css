@@ -1,12 +1,15 @@
 .produto{
     width: 100%;
     display: grid;
-    grid-template-columns: 100px 1fr 100px 20px;
+    grid-template-columns: 100px 100px 1fr 100px 20px;
     background-color: white;
-    padding: 20px 26px;
     align-items: center;
     border-bottom: 1px solid rgba(209, 209, 209, 0.527);
     justify-content: center;
+    position: relative;
+    animation: entry forwards .3s;
+    padding: 10px 20px;
+  
 }
 
 .produto span img{
@@ -15,4 +18,46 @@
 
 .produto span:last-child{
 cursor: pointer;
+}
+
+.quantidade{
+    display: flex;
+    gap: 2px;
+    align-items: center;
+    justify-content: space-around;
+    max-width: 70px;
+
+
+}
+
+.quantidade span{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    width: 12px; 
+    height: 12px;
+    padding: 9px;
+    align-self: center;
+    border-radius: 50%;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.quantidade span:hover{
+    transform: scale(1.1);
+    transition: .5s;
+}
+
+@keyframes entry {
+    0%{
+    opacity: 0;
+     left: -400px;
+    }
+
+    100%{
+        left: 0;
+        opacity: 1;
+    }
 }

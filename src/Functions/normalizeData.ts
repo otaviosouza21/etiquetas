@@ -2,6 +2,7 @@ export interface planProdutoTypeNormalize {
     codigo: string;
     descricao: string;
     preco: number;
+    quantidade?:number | null
   }
   
   export interface planProdutoType {
