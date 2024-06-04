@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useState, version } from "react";
 import style from "./Etiquetas.module.css";
 import addIcon from "../../assets/icons/add.svg";
 import TableProdutos from "./TableProdutos/TableProdutos";
@@ -12,7 +12,9 @@ import {
   Route,
   Routes,
   BrowserRouter as Router,
+  useNavigate,
 } from "react-router-dom";
+import printerIcon from '../../assets/icons/printer.svg'
 
 const Etiquetas = () => {
   const [inputFile, setInputFile] = useState<File | null>(null);
@@ -22,6 +24,7 @@ const Etiquetas = () => {
   const [gerar, setGerar] = useState<boolean>(false);
   const [alert, setAlert] = useState<toastType | null>(null);
   const { planilha } = useGlobalContext();
+  
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0] || null;
@@ -40,10 +43,7 @@ const Etiquetas = () => {
         setTimeout(() => {
           setAlert(null);
         }, 2000);
-        return null;
-      }
-
-      if (!itemExists) {
+      } else if (!itemExists) {
         setListaInserida((prevItems) => [...prevItems, ...filteredItems]);
       } else {
         setAlert({ color: "tomato", text: "Item Já Inserido" });
@@ -54,6 +54,7 @@ const Etiquetas = () => {
     }
   }
 
+ 
   return (
     <Router>
       <main className={`container ${style.etiquetas}`}>
@@ -88,16 +89,19 @@ const Etiquetas = () => {
             }}
             disabled={!planilha}
           />
-          <button className={style.contagem}>
-            <NavLink to="/etiquetas">{listaInserida.length} PRODUTOS</NavLink>
-          </button>
+          <NavLink className={style.contagem}  to="/etiquetas">
+            <img src={printerIcon} alt="" />
+            <span>
+              {listaInserida.length} PRODUTOS
+            </span>
+          </NavLink>
         </div>
         {inputFile && <ExcelToJson file={inputFile} />}
         <TableProdutos
           lista={listaInserida}
           setListaInserida={setListaInserida}
         />
-        {alert && <Toast text="Item já inserido" color="tomato" />}
+        {alert && <Toast text={alert.text} color={alert.color} />}
       </main>
     </Router>
   );
