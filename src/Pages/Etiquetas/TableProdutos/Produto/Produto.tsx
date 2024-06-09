@@ -7,15 +7,16 @@ import trashIcon from '../../../../assets/icons/trashed.svg'
 interface produtoParamsType{
   produto: planProdutoTypeNormalize,
   deleteItem: (index:number)=>void,
-  index: number
+  index: number,
+  updateQuantity: (index:number,quantity:number)=> void
 }
 
-const Produto = ({ produto,deleteItem,index }: produtoParamsType) => {
+const Produto = ({ produto,deleteItem,index,updateQuantity }: produtoParamsType) => {
 const [quantidade,setQuantidade] = useState<number>(1)
 
 useEffect(()=>{
 produto.quantidade = quantidade
-console.log(produto);
+updateQuantity(index, quantidade);
 },[quantidade])
 
 

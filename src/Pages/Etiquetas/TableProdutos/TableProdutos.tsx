@@ -7,11 +7,12 @@ import { planProdutoTypeNormalize } from "../../../Functions/normalizeData";
 interface tableProdutosType {
   lista: planProdutoTypeNormalize[];
   setListaInserida: React.Dispatch<
-    React.SetStateAction<planProdutoTypeNormalize[]>
+   React.SetStateAction<planProdutoTypeNormalize[]>
   >;
+  updateQuantity: (index: number, quantity: number) => void; 
 }
 
-const TableProdutos = ({ lista, setListaInserida }: tableProdutosType) => {
+const TableProdutos = ({ lista, setListaInserida,updateQuantity}: tableProdutosType) => {
   function deleteItem(idx: number): void {
     const novaLista = [...lista];
     novaLista.splice(idx, 1);
@@ -37,6 +38,7 @@ const TableProdutos = ({ lista, setListaInserida }: tableProdutosType) => {
               index={idx}
               produto={produto}
               key={produto.codigo}
+              updateQuantity={updateQuantity}
             />
           );
         })}

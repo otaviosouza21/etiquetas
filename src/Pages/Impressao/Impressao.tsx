@@ -5,16 +5,17 @@ import logoCiclo from "../../assets/icons/Logo.jpg";
 import currentConvert from "../../Functions/currentConvert";
 
 const Impressao = ({ produtos }: { produtos: planProdutoTypeNormalize[] }) => {
+
+
   return (
     <section className={styles.impressaoContainer}>
       <ul className={styles.etiquetas}>
-        {produtos.map((etiqueta) => {
+        {produtos.map((etiqueta,id) => {
           if (etiqueta.quantidade) {
-
             const quantidadeEtiquetas = [];
             for (let i = 0; i < etiqueta.quantidade; i++) {
               quantidadeEtiquetas.push(
-                <li className={styles.etiqueta}>
+                <li key={id} className={styles.etiqueta}>
                   <img src={logoCiclo} alt="" />
                   <h4>{etiqueta.codigo}</h4>
                   <span className={styles.descricao}>{etiqueta.descricao}</span>
