@@ -11,9 +11,13 @@ import Impressao from "./Pages/Impressao/Impressao";
 
 function App() {
   return (
-    <>
-      <Etiquetas />
-    </>
+    <Router>
+      <div>
+        <Routes>
+          <Route path="/" element={<Etiquetas />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
