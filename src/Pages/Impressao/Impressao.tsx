@@ -4,11 +4,17 @@ import { planProdutoTypeNormalize } from "../../Functions/normalizeData";
 import logoCiclo from "../../assets/icons/Logo.jpg";
 import currentConvert from "../../Functions/currentConvert";
 
-const Impressao = ({ produtos }: { produtos: planProdutoTypeNormalize[] }) => {
+interface ImpressaoTypes {
+  produtos: planProdutoTypeNormalize[]
+  display: boolean
+}
+
+
+const Impressao = ({ produtos,display }: ImpressaoTypes) => {
 
 
   return (
-    <section className={styles.impressaoContainer}>
+    <section style={{display: display ? '' : 'none'}} className={styles.impressaoContainer}>
       <ul className={styles.etiquetas}>
         {produtos.map((etiqueta,id) => {
           if (etiqueta.quantidade) {

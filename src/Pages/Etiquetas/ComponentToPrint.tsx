@@ -5,16 +5,17 @@ import { planProdutoTypeNormalize } from '../../Functions/normalizeData';
 
 interface ComponentToPrintProps {
   produtos: planProdutoTypeNormalize[];
+  display: boolean
 }
 
 export default class ComponentToPrint extends React.PureComponent<ComponentToPrintProps> {
 
   
   render() {
-    const { produtos }  = this.props;
+    const { produtos,display }  = this.props;
     return (
       <div>
-        <Impressao produtos={produtos} />
+        <Impressao display={display} produtos={produtos} />
       </div>
     );
   }

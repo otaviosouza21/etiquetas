@@ -15,6 +15,7 @@ const Etiquetas = () => {
   const [inputFile, setInputFile] = useState<File | null>(null);
   const [listaInserida, setListaInserida] = useState<planProdutoTypeNormalize[]>([]);
   const [alert, setAlert] = useState<toastType | null>(null);
+  const [display,setDisplay] = useState<boolean>(false)
   const { planilha } = useGlobalContext();
   const etiquetasRef = useRef<ComponentToPrint>(null);
   const handlePrint = useReactToPrint({
@@ -83,15 +84,29 @@ const Etiquetas = () => {
           disabled={!planilha}
         />
         
-        <button onClick={handlePrint} className={style.contagem}>
+        <button onClick={()=>{
+          setDisplay(!display)
+        }} className={style.contagem}>
           <img src={printerIcon} alt="" />
           <span>{listaInserida.length} PRODUTOS</span>
         </button>
       </div>
+      
+      {display && 
+      <button onClick={window.print} className={`${style.contagem} ${style.print}`}>
+        <span>IMPRIMIR</span>
+      </button>}
+
+      {display && 
+      <button onClick={()=>setDisplay(false)} className={`${style.contagem} ${style.voltar}`}>
+        <span>{"<- VOLTAR"}</span>
+      </button>}
+
+
 
       {inputFile && <ExcelToJson file={inputFile} />}
       <TableProdutos lista={listaInserida} setListaInserida={setListaInserida}  updateQuantity={updateQuantity}/>
-      <ComponentToPrint ref={etiquetasRef} key={listaInserida.length} produtos={listaInserida} />
+      <ComponentToPrint display={display} ref={etiquetasRef} key={listaInserida.length} produtos={listaInserida} />
       {alert && <Toast text={alert.text} color={alert.color} />}
     </main>
   );

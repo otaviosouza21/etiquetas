@@ -1,6 +1,10 @@
 .impressaoContainer{
     background-color: rgb(255, 255, 255);
     z-index: 100;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
    
 }
 
@@ -8,10 +12,8 @@
     display: grid;
     grid-template-columns: 1fr 1fr; 
     grid-template-rows: repeat(8,1fr);
-    align-items: center;
     position: relative;
-    width: 1000.70px;
-    max-height: 1200.52px;
+    padding: 0 50px 0 50px;
 }
 
 .etiqueta{
@@ -21,10 +23,12 @@
     border: solid 1px black;
     position: relative;
     padding: 20px !important;
-    max-height: 130px;
+    height: 150px;
+    width: 325px;
     justify-content: center;
     gap: 5px;
     padding: 20px;
+
   
 }
 
@@ -49,3 +53,21 @@
     font-weight: bold;
     align-self: center;
   }
+
+  @media print {
+    .impressaoContainer {
+      page-break-inside: avoid;
+      page-break-before: auto;
+      page-break-after: auto;
+    }
+  
+    .etiquetas {
+      page-break-inside: avoid;
+    }
+  
+    .etiqueta {
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+  }
+ 
