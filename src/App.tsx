@@ -14,7 +14,7 @@ function App() {
     <Router>
       <div>
         <Routes>
-          <Route path="/etiquetas" element={<Etiquetas />} />
+          <Route path="/" element={<Etiquetas />} />
         </Routes>
       </div>
     </Router>
